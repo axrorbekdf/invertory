@@ -1,0 +1,121 @@
+<template>
+    <div id="product-create">
+    	<div class="d-sm-flex align-items-center justify-content-between mb-1">
+		    <router-link to="/order" class="nav-link btn-primary">
+		    	<h1 class="h3 mb-0 text-white-800">Go Back</h1>
+		    </router-link>
+		  </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="card shadow-sm my-0">
+                  <div class="card-body p-0">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="login-form">
+                          <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Order Details</h1>
+                          </div>
+                          <div class="card">
+                              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Simple Tables</h6>
+                              </div>
+                              <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                  <thead class="thead-light">
+                                    <tr>
+                                      <th>Order ID</th>
+                                      <th>Customer</th>
+                                      <th>Item</th>
+                                      <th>Status</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td><a href="#">RA0449</a></td>
+                                      <td>Udin Wayang</td>
+                                      <td>Nasi Padang</td>
+                                      <td><span class="badge badge-success">Delivered</span></td>
+                                      <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><a href="#">RA5324</a></td>
+                                      <td>Jaenab Bajigur</td>
+                                      <td>Gundam 90' Edition</td>
+                                      <td><span class="badge badge-warning">Shipping</span></td>
+                                      <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><a href="#">RA8568</a></td>
+                                      <td>Rivat Mahesa</td>
+                                      <td>Oblong T-Shirt</td>
+                                      <td><span class="badge badge-danger">Pending</span></td>
+                                      <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><a href="#">RA1453</a></td>
+                                      <td>Indri Junanda</td>
+                                      <td>Hat Rounded</td>
+                                      <td><span class="badge badge-info">Processing</span></td>
+                                      <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><a href="#">RA1998</a></td>
+                                      <td>Udin Cilok</td>
+                                      <td>Baby Powder</td>
+                                      <td><span class="badge badge-success">Delivered</span></td>
+                                      <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="card-footer"></div>
+                            </div>
+                          <hr>
+                          
+                          <div class="text-center">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        created(){
+          if(!User.loggedIn()){
+            this.$router.push({ name:'login' })
+          }
+        },
+        data(){
+          return {
+            
+          }
+        },
+        created(){
+          let id = this.$route.params.id;
+
+          axios.get("/api/products/"+id)
+          .then(({data}) => (this.form = data))
+          .catch(console.log('error'))
+
+        },
+
+        methods:{
+            
+
+           
+        },
+
+        mounted() {
+            console.log('Component mounted.')
+        },
+
+    }
+</script>
